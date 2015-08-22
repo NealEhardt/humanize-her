@@ -1,7 +1,8 @@
 'use strict';
 
 var videoElement = document.querySelector('video');
-var videoSelect = document.querySelector('select#videoSource');
+var videoList = [];
+var videoPointer = 0;
 
 navigator.getUserMedia = navigator.getUserMedia ||
   navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -9,11 +10,8 @@ navigator.getUserMedia = navigator.getUserMedia ||
 function gotSources(sourceInfos) {
   for (var i = 0; i !== sourceInfos.length; ++i) {
     var sourceInfo = sourceInfos[i];
-    var option = document.createElement('option');
-    option.value = sourceInfo.id;
     if (sourceInfo.kind === 'video') {
-      option.text = sourceInfo.label || 'camera ' + (videoSelect.length + 1);
-      videoSelect.appendChild(option);
+      videoList.push(sourceInfo.id);
     } else {
       console.log('Some other kind of source: ', sourceInfo);
     }
@@ -42,7 +40,7 @@ function start(){
     videoElement.src = null;
     window.stream.stop();
   }
-  var videoSource = videoSelect.value;
+  var videoSource = videoList[videoPointer];
   var constraints = {
     video: {
       optional: [{sourceId: videoSource}]
@@ -51,6 +49,9 @@ function start(){
   navigator.getUserMedia(constraints, successCallback, errorCallback);
 }
 
-videoSelect.onchange = start;
+document.getElementById("switchVideo").click(function() {
+  videoPointer++;
+  start();
+});
 
 start();

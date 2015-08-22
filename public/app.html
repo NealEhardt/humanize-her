@@ -23,18 +23,18 @@
     <!-- Make sure all your bars are the first things in your <body> -->
     <header class="bar bar-nav">
       <h1 class="title">Ratchet</h1>
+
+      <button class="btn pull-right" id="switchVideo">
+        Switch Video Source
+      </button>
     </header>
 
     <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
     <div class="content">
-        <div class="select">
-          <label for="videoSource">Video source: </label><select id="videoSource"></select>
-        </div>
-
         <div id="videowindow" style="position: relative;">
           <video muted autoplay style="position: relative; z-index: 1; width: 100%"></video>
-          <div class="overlay" style="position: absolute; top: 0px; left: 0px; width: 40px; height: 40px; background-color: #fff; z-index: 999">
-            <img src="overlays/test.png" />
+          <div class="overlay" style="position: absolute; top: 0px; left: 0px; z-index: 999">
+            <img src="overlays/test.png" style="width: 100%;" />
           <div>
         </div>
 
