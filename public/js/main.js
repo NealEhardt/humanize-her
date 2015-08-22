@@ -10,14 +10,14 @@ var levels = {
   ],
   '2': [
     {'Lesser': 'transparent.png'},
-    {'More': 'clint_1.png'},
-    {'And': 'clint_2.png'},
-    {'More': 'clint_3.png'}
+    {'Invictus': 'clint_1.png'},
+    {'Rugged': 'clint_2.png'},
+    {'Drifter': 'clint_3.png'}
   ],
   '3':[
     {'Lesser': 'transparent.png'},
-    {'Tasty': 'chris_2.png'},
-    {'More Tasty': 'chris_1.png'}
+    {'Me': 'chris_2.png'},
+    {'More Me': 'chris_1.png'}
   ],
   'bonus':[
     {'Lesser': 'transparent.png'},
