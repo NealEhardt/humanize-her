@@ -15,11 +15,13 @@ function gotSources(sourceInfos) {
   for (var i = 0; i !== sourceInfos.length; ++i) {
     var sourceInfo = sourceInfos[i];
     if (sourceInfo.kind === 'video') {
-      videoList.push(sourceInfo.id);
+      videoList.push({type: "live", src: sourceInfo.id});
     } else {
-      console.log('Some other kind of source: ', sourceInfo);
+      // console.log('Some other kind of source: ', sourceInfo);
     }
   }
+  videoList.reverse();
+  videoList.push({type: "play", src: "video/hillary2.mp4"});
 }
 
 function successCallback(stream) {
@@ -39,13 +41,23 @@ function start(){
   }
 
   var videoSource = videoList[videoPointer];
-  var constraints = {
-    video: {
-      optional: [{sourceId: videoSource}]
-    }
-  };
 
-  navigator.getUserMedia(constraints, successCallback, errorCallback);
+  if (videoSource) {
+    if (videoSource.type == "live") {
+      var constraints = {
+        video: {
+          optional: [{sourceId: videoSource.src}]
+        }
+      };
+
+      navigator.getUserMedia(constraints, successCallback, errorCallback);
+    } else {
+      videoElement.src = videoSource.src;
+      videoElement.play();
+    }
+  } else {
+    setTimeout(start, 1000);
+  }
 }
 
 document.getElementById("switchVideo").addEventListener('click', function() {
