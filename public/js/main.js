@@ -4,6 +4,10 @@ var videoElement = document.querySelector('video');
 var videoList = [];
 var videoPointer = 0;
 
+var winHeight = window.innerHeight
+|| document.documentElement.clientHeight
+|| document.body.clientHeight;
+
 navigator.getUserMedia = navigator.getUserMedia ||
   navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
@@ -17,13 +21,6 @@ function gotSources(sourceInfos) {
     }
   }
 }
-
-if (typeof MediaStreamTrack === 'undefined'){
-  alert('This browser does not support MediaStreamTrack.\n\nTry Chrome Canary.');
-} else {
-  MediaStreamTrack.getSources(gotSources);
-}
-
 
 function successCallback(stream) {
   window.stream = stream; // make stream available to console
@@ -40,18 +37,39 @@ function start(){
     videoElement.src = null;
     window.stream.stop();
   }
+
   var videoSource = videoList[videoPointer];
   var constraints = {
     video: {
       optional: [{sourceId: videoSource}]
     }
   };
+
   navigator.getUserMedia(constraints, successCallback, errorCallback);
 }
 
 document.getElementById("switchVideo").addEventListener('click', function() {
-  videoPointer = videoPointer + 1;
+  var nextSource = videoPointer + 1
+  if (videoList.length - 1 < nextSource) {
+    videoPointer = 0
+  } else {
+    videoPointer = nextSource;
+  }
+
   start();
 });
+
+document.querySelector("button.startBtn").addEventListener('click', function() {
+  document.querySelector("button.startBtn").style.display = 'none';
+  document.querySelector("#overlaySlider").className = 'slider';
+});
+
+// Main
+
+if (typeof MediaStreamTrack === 'undefined'){
+  alert('This browser does not support MediaStreamTrack.');
+} else {
+  MediaStreamTrack.getSources(gotSources);
+}
 
 start();
