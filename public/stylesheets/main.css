@@ -12,13 +12,38 @@
   z-index: 1;
 }
 
+.bar {
+  background-color: #c2ae95;
+}
+
+.tab-item {
+  color: #66777d !important;
+}
+
+.active {
+  color: #824e4e !important;
+}
+
 #backButton {
   opacity: 0;
+  color: #7f825f;
   transition: opacity .25s;
 }
 
 div.content {
-  background-color: black;
+  background-color: #66777d;
+}
+
+.table-view-cell {
+  background-color: #c2ae95;
+}
+
+.card {
+  border: 1px solid #7f825f;
+}
+
+.push-right::after {
+  color: #7f825f;
 }
 
 #videowindow {
@@ -40,11 +65,11 @@ video {
   white-space: nowrap;
   font-size: 26px;
   font-family: 'Lobster', cursive;
-  color: #084B8A;
+  color: #4a5f70;
 }
 
 .manspan {
-  color: red;
+  color: #824e4e;
 }
 
 .hidden {
@@ -56,7 +81,7 @@ video {
   top: 0px;
   left: 0px;
   z-index: 999;
-  height: 85vh;
+  height: 82vh;
   overflow: hidden;
 }
 

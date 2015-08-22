@@ -110,7 +110,7 @@ function setLevel(lvl) {
   for (var i = 0; i < level.length; i++) {
     var tab = document.createElement("a");
     tab.classList.add('tab-item');
-    function x() {
+    (function x() {
       var key = Object.keys(level[i])[0];
       var value = level[i][key];
       tab.innerHTML = key;
@@ -121,8 +121,7 @@ function setLevel(lvl) {
         this.classList.add('active');
         img.src = 'overlays/' + value;
       });
-    };
-    x();
+    })();
     barTab.appendChild(tab);
   }
   barTab.firstChild.classList.add('active');
