@@ -21,7 +21,7 @@ function gotSources(sourceInfos) {
     }
   }
   videoList.reverse();
-  videoList.push({type: "play", src: "video/hillary2.mp4"});
+  videoList.push({type: "play", src: "video/hillary.mp4"});
 }
 
 function successCallback(stream) {

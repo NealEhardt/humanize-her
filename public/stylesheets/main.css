@@ -23,6 +23,10 @@ video {
   white-space: nowrap;
   font-size: 26px;
   font-family: 'Lobster', cursive;
+  color: #0b65ba;
+}
+
+.brand span {
   color: #084B8A;
 }
 
