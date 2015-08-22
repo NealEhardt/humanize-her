@@ -6,7 +6,7 @@ var levels = {
     {'Venture': 'suit.png'},
     {'Andy': 'hoodie.png'},
     {'Rx': 'doctor.png'},
-    {'Elementary': 'kid.png'}
+    {'Tot': 'kid.png'}
   ],
   '2': [
     {'Lesser': 'transparent.png'},
