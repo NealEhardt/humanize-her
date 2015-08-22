@@ -3,26 +3,25 @@
 var levels = {
   '1': [
     {'Lesser': 'transparent.png'},
-    {'Venture': '1.png'},
-    {'Andy': '2.png'},
-    {'Rx': '3.png'},
-    {'Elementary': '1.png'},
+    {'Venture': 'suit.png'},
+    {'Andy': 'hoodie.png'},
+    {'Rx': 'doctor.png'},
+    {'Elementary': 'kid.png'}
   ],
   '2': [
     {'Lesser': 'transparent.png'},
-    {'More': '1.png'},
-    {'And': '2.png'},
-    {'More': '3.png'},
-    {'And': '1.png'},
+    {'More': 'clint_1.png'},
+    {'And': 'clint_2.png'},
+    {'More': 'clint_3.png'}
   ],
   '3':[
     {'Lesser': 'transparent.png'},
-    {'More': '1.png'},
-    {'And': '2.png'},
-    {'More': '3.png'},
-    {'And': '1.png'},
+    {'Tasty': 'chris_2.png'},
+    {'More Tasty': 'chris_1.png'}
   ],
   'bonus':[
+    {'Lesser': 'transparent.png'},
+    {'Presidential': 'clinton.png'}
   ]
 };
 var level = null;
@@ -30,6 +29,7 @@ var level = null;
 var videoElement = document.querySelector('video');
 var videoList = [];
 var videoPointer = 0;
+var isHillaryPlaying = false;
 
 var winHeight = window.innerHeight
 || document.documentElement.clientHeight
@@ -87,15 +87,14 @@ function start(){
   }
 }
 
-/*
-document.querySelector("button.startBtn").addEventListener('click', function() {
-  document.querySelector("button.startBtn").style.display = 'none';
-  document.querySelector("#overlaySlider").className = 'slider';
-});
-*/
-
 function setLevel(lvl) {
   level = levels[lvl];
+
+  if (isHillaryPlaying) {
+    isHillaryPlaying = false;
+    start();
+  }
+
   document.querySelector("#rightContent").style.marginLeft = "0vw";
   document.querySelector("#backButton").style.opacity = 1;
 
@@ -110,7 +109,7 @@ function setLevel(lvl) {
   for (var i = 0; i < level.length; i++) {
     var tab = document.createElement("a");
     tab.classList.add('tab-item');
-    (function x() {
+    (function () {
       var key = Object.keys(level[i])[0];
       var value = level[i][key];
       tab.innerHTML = key;
@@ -135,6 +134,13 @@ document.querySelector("#level2button").addEventListener('click', function() {
 });
 document.querySelector("#level3button").addEventListener('click', function() {
   setLevel('3');
+});
+document.querySelector("#bonusButton").addEventListener('click', function() {
+  setLevel('bonus');
+
+  videoElement.src = 'video/hillary.mp4';
+  videoElement.play();
+  isHillaryPlaying = true;
 });
 
 document.querySelector("#backButton").addEventListener('click', function() {
