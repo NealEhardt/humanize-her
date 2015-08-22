@@ -1,5 +1,32 @@
 'use strict';
 
+var levels = {
+  '1': [
+    {'Lesser': 'transparent.png'},
+    {'Venture': '1.png'},
+    {'Andy': '2.png'},
+    {'Rx': '3.png'},
+    {'Elementary': '1.png'},
+  ],
+  '2': [
+    {'Lesser': 'transparent.png'},
+    {'More': '1.png'},
+    {'And': '2.png'},
+    {'More': '3.png'},
+    {'And': '1.png'},
+  ],
+  '3':[
+    {'Lesser': 'transparent.png'},
+    {'More': '1.png'},
+    {'And': '2.png'},
+    {'More': '3.png'},
+    {'And': '1.png'},
+  ],
+  'bonus':[
+  ]
+};
+var level = null;
+
 var videoElement = document.querySelector('video');
 var videoList = [];
 var videoPointer = 0;
@@ -60,21 +87,63 @@ function start(){
   }
 }
 
-document.getElementById("switchVideo").addEventListener('click', function() {
-  var nextSource = videoPointer + 1
-  if (videoList.length - 1 < nextSource) {
-    videoPointer = 0
-  } else {
-    videoPointer = nextSource;
-  }
-
-  start();
-});
-
+/*
 document.querySelector("button.startBtn").addEventListener('click', function() {
   document.querySelector("button.startBtn").style.display = 'none';
   document.querySelector("#overlaySlider").className = 'slider';
 });
+*/
+
+function setLevel(lvl) {
+  level = levels[lvl];
+  document.querySelector("#rightContent").style.marginLeft = "0vw";
+  document.querySelector("#backButton").style.opacity = 1;
+
+  var img = document.querySelector('#overlayImg');
+  img.src = '';
+
+  var barTab = document.querySelector(".bar-tab");
+  while (barTab.firstChild) {
+    barTab.removeChild(barTab.firstChild);
+  }
+  var tabs = barTab.children;
+  for (var i = 0; i < level.length; i++) {
+    var tab = document.createElement("a");
+    tab.classList.add('tab-item');
+    function x() {
+      var key = Object.keys(level[i])[0];
+      var value = level[i][key];
+      tab.innerHTML = key;
+      tab.addEventListener('click', function() {
+        for (var j = 0; j < tabs.length; j++) {
+          tabs[j].classList.remove('active');
+        }
+        this.classList.add('active');
+        img.src = 'overlays/' + value;
+      });
+    };
+    x();
+    barTab.appendChild(tab);
+  }
+  barTab.firstChild.classList.add('active');
+}
+
+document.querySelector("#level1button").addEventListener('click', function() {
+  setLevel('1');
+});
+document.querySelector("#level2button").addEventListener('click', function() {
+  setLevel('2');
+});
+document.querySelector("#level3button").addEventListener('click', function() {
+  setLevel('3');
+});
+
+document.querySelector("#backButton").addEventListener('click', function() {
+  level = null;
+  document.querySelector("#rightContent").style.marginLeft = "100vw";
+  document.querySelector("#backButton").style.opacity = 0;
+});
+
 
 // Main
 

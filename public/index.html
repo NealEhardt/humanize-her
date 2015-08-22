@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Humanize Her</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <!-- Sets initial viewport load and disables zooming  -->
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://goratchet.com/assets/img/apple-touch-icon-114x114.png">
 
     <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -20,9 +20,11 @@
     <!-- Include the compiled Ratchet JS -->
     <script src="ratchet/js/ratchet.js"></script>
   </head>
+
   <body>
 
     <!-- Make sure all your bars are the first things in your <body> -->
+    <!--
     <header class="bar bar-nav">
       <h1 class="brand pull-left">Humanize Her!</h1>
 
@@ -30,39 +32,69 @@
         Video Source
       </button>
     </header>
+    -->
 
-    <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+    <header class="bar bar-nav">
+      <a id="backButton" class="icon icon-left-nav pull-left"></a>
+      <h1 class="title brand">Hu<span class="manspan">man</span>ize Her!</h1>
+    </header>
+
     <div class="content">
-      <div id="videowindow">
-        <video muted autoplay></video>
-        <div id="overlay">
-          <div id="overlaySlider" class="slider hidden">
-            <div class="slide-group">
-              <div class="slide">
-                <img src="overlays/1.png" />
-              </div>
-              <div class="slide">
-                <img src="overlays/2.png" />
-              </div>
-              <div class="slide">
-                <img src="overlays/3.png" />
-              </div>
-              <div class="slide">
-                <img src="overlays/transparent.png" />
-              </div>
-              <div class="slide">
-                <img src="overlays/1.png" />
-              </div>
-            </div>
+
+      <div id="rightContent" class="card card-right">
+        <div id="videowindow">
+          <video muted autoplay></video>
+          <div id="overlay">
+            <img id="overlayImg" />
           </div>
         </div>
+        <nav class="bar bar-tab">
+          <a class="tab-item active">
+            Lesser
+          </a>
+          <a class="tab-item">
+            Venture
+          </a>
+          <a class="tab-item">
+            Andy
+          </a>
+          <a class="tab-item">
+            Rx
+          </a>
+          <a class="tab-item">
+            Elementary
+          </a>
+        </nav>
       </div>
 
-      <button class="startBtn btn btn-positive btn-block">Humanize Her!</button>
+      <div class="card">
+        <ul class="table-view">
+          <li class="table-view-cell">
+            <a class="push-right" id="level1button">
+                Level 1
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="push-right" id="level2button">
+                Level 2
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="push-right" id="level3button">
+                Level 3
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="push-right" id="bonusButton">
+                Bonus
+            </a>
+          </li>
+        </ul>
+      </div>
 
-      <script type="text/javascript" src="js/main.js"></script>
-      <!-- <script type="text/javascript" src="js/swipe.js"></script> -->
     </div>
+
+    <script type="text/javascript" src="js/main.js"></script>
 
   </body>
 </html>
