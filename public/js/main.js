@@ -1,7 +1,6 @@
 'use strict';
 
 var videoElement = document.querySelector('video');
-var audioSelect = document.querySelector('select#audioSource');
 var videoSelect = document.querySelector('select#videoSource');
 
 navigator.getUserMedia = navigator.getUserMedia ||
@@ -12,10 +11,7 @@ function gotSources(sourceInfos) {
     var sourceInfo = sourceInfos[i];
     var option = document.createElement('option');
     option.value = sourceInfo.id;
-    if (sourceInfo.kind === 'audio') {
-      option.text = sourceInfo.label || 'microphone ' + (audioSelect.length + 1);
-      audioSelect.appendChild(option);
-    } else if (sourceInfo.kind === 'video') {
+    if (sourceInfo.kind === 'video') {
       option.text = sourceInfo.label || 'camera ' + (videoSelect.length + 1);
       videoSelect.appendChild(option);
     } else {
@@ -46,12 +42,8 @@ function start(){
     videoElement.src = null;
     window.stream.stop();
   }
-  var audioSource = audioSelect.value;
   var videoSource = videoSelect.value;
   var constraints = {
-    audio: {
-      optional: [{sourceId: audioSource}]
-    },
     video: {
       optional: [{sourceId: videoSource}]
     }
@@ -59,7 +51,6 @@ function start(){
   navigator.getUserMedia(constraints, successCallback, errorCallback);
 }
 
-audioSelect.onchange = start;
 videoSelect.onchange = start;
 
 start();
