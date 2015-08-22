@@ -49,8 +49,8 @@ function start(){
   navigator.getUserMedia(constraints, successCallback, errorCallback);
 }
 
-document.getElementById("switchVideo").click(function() {
-  videoPointer++;
+document.getElementById("switchVideo").addEventListener('click', function() {
+  videoPointer = videoPointer + 1;
   start();
 });
 
