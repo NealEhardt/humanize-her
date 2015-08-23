@@ -15,7 +15,6 @@ var levels = {
     {'Drifter': 'clint_3.png'}
   ],
   '3':[
-    {'Lesser': 'transparent.png'},
     {'Me': 'chris_2.png'},
     {'More Me': 'chris_1.png'}
   ],
@@ -94,8 +93,6 @@ function setLevel(lvl, sourceIdx) {
   document.querySelector("#backButton").style.opacity = 1;
 
   var imgElt = document.querySelector('#overlayImg');
-  imgElt.src = 'overlays/transparent.png';
-
   var barTab = document.querySelector(".bar-tab");
   while (barTab.firstChild) {
     barTab.removeChild(barTab.firstChild);
@@ -118,7 +115,7 @@ function setLevel(lvl, sourceIdx) {
     })();
     barTab.appendChild(tab);
   }
-  barTab.firstChild.classList.add('active');
+  barTab.firstChild.click();
 }
 
 document.querySelector("#level1button").addEventListener('click', function() {
