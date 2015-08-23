@@ -24,12 +24,10 @@ var levels = {
     {'Presidential': 'clinton.png'}
   ]
 };
-var level = null;
 
 var videoElement = document.querySelector('video');
-var videoList = [];
-var videoPointer = 0;
-var isHillaryPlaying = false;
+var videoSources = [];
+var videoSourceIdx = -1;
 
 var winHeight = window.innerHeight
 || document.documentElement.clientHeight
@@ -42,13 +40,10 @@ function gotSources(sourceInfos) {
   for (var i = 0; i !== sourceInfos.length; ++i) {
     var sourceInfo = sourceInfos[i];
     if (sourceInfo.kind === 'video') {
-      videoList.push({type: "live", src: sourceInfo.id});
-    } else {
-      // console.log('Some other kind of source: ', sourceInfo);
+      videoSources.push({type: "live", src: sourceInfo.id});
     }
   }
-  videoList.reverse();
-  videoList.push({type: "play", src: "video/hillary2.mp4"});
+  videoSources.push({type: "play", src: "video/hillary.mp4"});
 }
 
 function successCallback(stream) {
@@ -67,7 +62,7 @@ function start(){
     window.stream.stop();
   }
 
-  var videoSource = videoList[videoPointer];
+  var videoSource = videoSources[videoSourceIdx];
 
   if (videoSource) {
     if (videoSource.type == "live") {
@@ -87,19 +82,19 @@ function start(){
   }
 }
 
-function setLevel(lvl) {
-  level = levels[lvl];
+function setLevel(lvl, sourceIdx) {
+  var level = levels[lvl];
 
-  if (isHillaryPlaying) {
-    isHillaryPlaying = false;
+  if (videoSourceIdx != sourceIdx) {
+    videoSourceIdx = sourceIdx;
     start();
   }
 
   document.querySelector("#rightContent").style.marginLeft = "0vw";
   document.querySelector("#backButton").style.opacity = 1;
 
-  var img = document.querySelector('#overlayImg');
-  img.src = '';
+  var imgElt = document.querySelector('#overlayImg');
+  imgElt.src = '';
 
   var barTab = document.querySelector(".bar-tab");
   while (barTab.firstChild) {
@@ -118,7 +113,7 @@ function setLevel(lvl) {
           tabs[j].classList.remove('active');
         }
         this.classList.add('active');
-        img.src = 'overlays/' + value;
+        imgElt.src = 'overlays/' + value;
       });
     })();
     barTab.appendChild(tab);
@@ -127,16 +122,16 @@ function setLevel(lvl) {
 }
 
 document.querySelector("#level1button").addEventListener('click', function() {
-  setLevel('1');
+  setLevel('1', 1);
 });
 document.querySelector("#level2button").addEventListener('click', function() {
-  setLevel('2');
+  setLevel('2', 1);
 });
 document.querySelector("#level3button").addEventListener('click', function() {
-  setLevel('3');
+  setLevel('3', 0);
 });
 document.querySelector("#bonusButton").addEventListener('click', function() {
-  setLevel('bonus');
+  setLevel('bonus', 2);
 
   videoElement.src = 'video/hillary.mp4';
   videoElement.play();
@@ -144,7 +139,6 @@ document.querySelector("#bonusButton").addEventListener('click', function() {
 });
 
 document.querySelector("#backButton").addEventListener('click', function() {
-  level = null;
   document.querySelector("#rightContent").style.marginLeft = "100vw";
   document.querySelector("#backButton").style.opacity = 0;
 });
