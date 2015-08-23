@@ -94,7 +94,7 @@ function setLevel(lvl, sourceIdx) {
   document.querySelector("#backButton").style.opacity = 1;
 
   var imgElt = document.querySelector('#overlayImg');
-  imgElt.src = '';
+  imgElt.src = 'overlays/transparent.png';
 
   var barTab = document.querySelector(".bar-tab");
   while (barTab.firstChild) {
