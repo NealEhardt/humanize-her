@@ -146,13 +146,6 @@ document.querySelector("#backButton").addEventListener('click', function() {
   document.querySelector("#backButton").style.opacity = 0;
 });
 
-// Quick hack to give Chris an easier click.
-document.querySelector("#overlayImg").addEventListener('click', function() {
-  var tab2 = document.querySelector(".tab-item:nth-child(2)");
-  if(tab2.innerHTML == 'More Me') {
-    tab2.click();
-  }
-});
 
 // Main
 
