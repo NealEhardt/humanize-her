@@ -81,6 +81,8 @@ function start(){
   }
 }
 
+var preloadedImages;
+
 function setLevel(lvl, sourceIdx) {
   var level = levels[lvl];
 
@@ -93,6 +95,8 @@ function setLevel(lvl, sourceIdx) {
   document.querySelector("#backButton").style.opacity = 1;
 
   var imgElt = document.querySelector('#overlayImg');
+  preloadedImages = [];
+
   var barTab = document.querySelector(".bar-tab");
   while (barTab.firstChild) {
     barTab.removeChild(barTab.firstChild);
@@ -112,6 +116,8 @@ function setLevel(lvl, sourceIdx) {
         this.classList.add('active');
         imgElt.src = 'overlays/' + value;
       });
+      preloadedImages[i] = new Image();
+      preloadedImages[i].src = 'overlays/' + value;
     })();
     barTab.appendChild(tab);
   }
