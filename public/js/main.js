@@ -91,6 +91,13 @@ function setLevel(lvl, sourceIdx) {
     start();
   }
 
+  var videoElt = document.querySelector("video");
+  if (sourceIdx == 0) {
+    videoElt.style.marginTop = "-50vh";
+  } else {
+    videoElt.style.marginTop = "0vh";
+  }
+
   document.querySelector("#rightContent").style.marginLeft = "0vw";
   document.querySelector("#backButton").style.opacity = 1;
 
@@ -135,10 +142,6 @@ document.querySelector("#level3button").addEventListener('click', function() {
 });
 document.querySelector("#bonusButton").addEventListener('click', function() {
   setLevel('bonus', 2);
-
-  videoElement.src = 'video/hillary.mp4';
-  videoElement.play();
-  isHillaryPlaying = true;
 });
 
 document.querySelector("#backButton").addEventListener('click', function() {
@@ -146,6 +149,13 @@ document.querySelector("#backButton").addEventListener('click', function() {
   document.querySelector("#backButton").style.opacity = 0;
 });
 
+// Quick hack to give Chris an easier click.
+document.querySelector("#overlayImg").addEventListener('click', function() {
+  var tab2 = document.querySelector(".tab-item:nth-child(2)");
+  if(tab2.innerHTML == 'More Me') {
+    tab2.click();
+  }
+});
 
 // Main
 
