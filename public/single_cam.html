@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Humanize Her</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://goratchet.com/assets/img/apple-touch-icon-114x114.png">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Include the compiled Ratchet CSS -->
+    <link href="ratchet/css/ratchet.css" rel="stylesheet">
+    <link href="ratchet/css/ratchet-theme-ios.css" rel="stylesheet">
+    <link href="stylesheets/main.css" rel="stylesheet">
+
+    <!-- Include the compiled Ratchet JS -->
+    <script src="ratchet/js/ratchet.js"></script>
+  </head>
+
+  <body>
+
+    <header class="bar bar-nav">
+      <a id="backButton" class="icon icon-left-nav pull-left"></a>
+      <h1 class="title brand">Hu<span class="manspan">man</span>ize Her!</h1>
+    </header>
+
+    <div class="content">
+
+      <!-- right card is off screen at launch -->
+      <div id="rightContent" class="card card-right">
+        <div id="videowindow">
+          <video muted autoplay></video>
+          <div id="overlay">
+            <img id="overlayImg" />
+          </div>
+        </div>
+        <nav class="bar bar-tab">
+          <a class="tab-item active">
+            Lesser
+          </a>
+          <a class="tab-item">
+            Venture
+          </a>
+          <a class="tab-item">
+            Andy
+          </a>
+          <a class="tab-item">
+            Rx
+          </a>
+          <a class="tab-item">
+            Elementary
+          </a>
+        </nav>
+      </div>
+
+      <!-- main menu card -->
+      <div class="card">
+        <ul class="table-view">
+          <li class="table-view-cell">
+            <a class="push-right" id="level1button">
+                Basic
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="push-right" id="level2button">
+                Advanced
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="push-right" id="level3button">
+                YOUmanize Her +
+            </a>
+          </li>
+          <li class="table-view-cell">
+            <a class="push-right" id="bonusButton">
+                Video +
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <script type="text/javascript" src="js/single_cam.js"></script>
+
+  </body>
+</html>
